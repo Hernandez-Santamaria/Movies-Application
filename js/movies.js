@@ -1,4 +1,4 @@
-"use strict"
+"use strict";
 
 fetch ("https://wakeful-meadow-petroleum.glitch.me/movies")
     .then (resp => resp.json())
