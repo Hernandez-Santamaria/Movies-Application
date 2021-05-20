@@ -37,22 +37,26 @@ const getMovies = () => {
             // console.log(movies);
             let htmlStr = " ";
             for (let movie of movies) {
+                htmlStr += `<div class="card" style="width: 18rem;">`
                 htmlStr += `<img src="${movie.poster}" alt="posterZ" style="width: 200px;
-    height: auto;" class="mt-4">`
-                htmlStr += `<h6>${movie.title}</h6>`
-                htmlStr += `<div class="dropdown">`
-                htmlStr += `<button class="btn" type="button">Info</button>`
-                htmlStr += `<div class="dropdown-menu">`
-                htmlStr += `<a class="dropdown-item">Released: ${movie.year}</a>`
-                htmlStr += `<a class="dropdown-item">Director: ${movie.director}</a>`
-                htmlStr += `<a class="dropdown-item">Rating: ${movie.rating}</a>`
-                htmlStr += `<a class="dropdown-item">Plot: ${movie.plot}</a>`
-                htmlStr += `<a class="dropdown-item">Actors: ${movie.actors}</a>`
+    height: auto;" class="card-img-top">`
+
+                htmlStr += `<div class=" card-body">`
+
+                htmlStr += `<h6 class="card-title">${movie.title.toUpperCase()}</h6>`
+
+                htmlStr += `<p class="card-text">Released: ${movie.year}</p>`
+                htmlStr += `<p class="card-text">Director: ${movie.director}</p>`
+                htmlStr += `<p class="card-text">Rating: ${movie.rating}</p>`
+                htmlStr += `<p class="card-text">Plot: ${movie.plot}</p>`
+                htmlStr += `<p class="card-text">Actors: ${movie.actors}</p>`
+
+                htmlStr += `<button type="button" class="delete btn btn-danger" id="delete" data-value="${movie.id.toString()}">Delete</button>`
+                htmlStr += `<button type="button" class="edit btn btn-secondary" id="edit" data-value="${movie.id.toString()}">Edit</button><br>`
                 htmlStr += `</div>`
-                htmlStr += `<button type="button" class="delete" id="delete" data-value="${movie.id.toString()}">Delete</button>`
-                htmlStr += `<button type="button" class="edit" id="edit" data-value="${movie.id.toString()}">Edit</button><br>`
-            }
                 htmlStr += `</div>`
+                    }
+
             $("#main").html(htmlStr);
         })
         .then(function (){
