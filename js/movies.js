@@ -34,44 +34,68 @@ const getMovies = () => {
     fetch('https://wakeful-meadow-petroleum.glitch.me/movies')
         .then(resp => resp.json())
         .then(movies => {
-            console.log(movies);
+            // console.log(movies);
             let htmlStr = " ";
             for (let movie of movies) {
-                htmlStr += `<h1>${movie.title}</h1><p>by: ${movie.year} ${movie.director}</p>`
+                htmlStr += `<img src="${movie.poster}" alt="posterZ" style="width: 200px;
+    height: auto;">`
+                htmlStr += `<h6>${movie.title}</h6>`
+                htmlStr += `<p>Released: ${movie.year}</p>`
+                htmlStr += `<p>Director: ${movie.director}</p>`
+                htmlStr += `<p>Rating: ${movie.rating}</p>`
+                htmlStr += `<p>Plot: ${movie.plot}</p>`
+                htmlStr += `<p>Actors: ${movie.actors}</p>`
+                htmlStr += `<button type="button" class="delete" id="delete" data-value="${movie.id.toString()}">Delete</button>`
+                htmlStr += `<button type="button" class="edit" id="edit" data-value="${movie.id.toString()}">Edit</button>`
             }
             $("#main").html(htmlStr);
+        })
+        .then(function (){
+            $('.delete').click(function (){
+                // console.log("Delete Button Clicked");
+                var idTag = $(this).attr("data-value");
+                console.log(idTag);
+                let deleteMovie = {
+                    method : 'DELETE',
+                    headers: {
+                        'content-type': 'application/json'
+                    }
+                };
+                let inputVal = $('#movie-id-delete').val();
+                fetch(`https://wakeful-meadow-petroleum.glitch.me/movies/${idTag}`, deleteMovie)
+                    .then(getMovies)
+            });
         });
 }
+getMovies()
 
 
-// post
-let newMovie = {
-    "title" : "Fantastic Mr Fox",
-    "rating" : "8",
-    // "poster" : "something"
-    "year" : "2009",
-    "genre" : "comedy",
-    "director": "Wes Anderson",
-    "plot" : "fox steals chickens and cider",
-    "actors" : "George Clooney, Meryl Streep, Bill Murray, Jason Schwartzman",
-    // "id" : "12341234"
+// taking the user input and saving to JSON glitch DB
+$('#post').click ((e) => {
+    e.preventDefault()
+    let newMovie = {
+            "title" : $('#title').val(),
+            "rating" : $('#rating').val(),
+             "poster" : $("#poster").val(),
+            "year" : $('#year').val(),
+            "genre" : $('#genre').val(),
+            "director":$('#director').val(),
+            "plot" : $('#plot').val(),
+            "actors" : $('#actors').val(),
 };
-
-const postOptions = {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(newMovie),
-};
-
-
-
-$("#post").click(()=> {
-    fetch("https://wakeful-meadow-petroleum.glitch.me/movies",postOptions )
-        .then(resp => resp.json())
+    const post = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newMovie),
+    };
+    fetch("https://wakeful-meadow-petroleum.glitch.me/movies",post )
+        // .then(resp => resp.json())
         .then(getMovies)
+    console.log(newMovie)
 });
+
 
 
 
