@@ -53,8 +53,8 @@ const getMovies = () => {
         .then(function (){
             $('.delete').click(function (){
                 // console.log("Delete Button Clicked");
-                var idTag = $(this).attr("data-value");
-                console.log(idTag);
+                var movieTagAttr = $(this).attr("data-value");
+                console.log(movieTagAttr);
                 let deleteMovie = {
                     method : 'DELETE',
                     headers: {
@@ -62,7 +62,7 @@ const getMovies = () => {
                     }
                 };
                 let inputVal = $('#movie-id-delete').val();
-                fetch(`https://wakeful-meadow-petroleum.glitch.me/movies/${idTag}`, deleteMovie)
+                fetch(`https://wakeful-meadow-petroleum.glitch.me/movies/${movieTagAttr}`, deleteMovie)
                     .then(getMovies)
             });
         });
