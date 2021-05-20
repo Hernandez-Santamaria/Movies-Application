@@ -37,9 +37,9 @@ const getMovies = () => {
             // console.log(movies);
             let htmlStr = " ";
             for (let movie of movies) {
-                htmlStr += `<div class="card" style="width: 18rem;">`
+                htmlStr += `<div class="card my-2" style="width: 18rem;">`
                 htmlStr += `<img src="${movie.poster}" alt="posterZ" style="width: 200px;
-    height: auto;" class="card-img-top">`
+    height: auto;" class="card-img-top mx-auto">`
 
                 htmlStr += `<div class=" card-body">`
 
@@ -103,6 +103,15 @@ $('#post').click ((e) => {
         // .then(resp => resp.json())
         .then(getMovies)
     console.log(newMovie)
+});
+
+
+// add a movie href //
+$("#nav a").click(function(e){
+    e.preventDefault();
+    $(".toggle").hide();
+    var toShow = $(this).attr('href');
+    $(toShow).show();
 });
 
 
