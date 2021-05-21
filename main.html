@@ -8,14 +8,17 @@
 </head>
 
 <body class="container-fluid">
-  <h1 class="text-center mt-5 mb-5">Movie Application</h1>
-  <div id="main">
+  <h1 class="text-center mt-5 mb-5" style="text-align: center">Movie Application</h1>
+  <div id="main" class="row">
       <div class="loader"></div>
   </div>
 
-  <button id="nav" type="button" class="btn mb-5">
-      <a href="#content1">Add a Movie!</a>
+
+  <button id="show-btn" type="button" class="btn editButton mb-5" >
+      Hide/Show
   </button>
+
+
 
 <div id="content1" class="toggle" style="display:none">
     <form id="myForm">
@@ -47,8 +50,6 @@
         </div>
     </form>
 </div>
-
-
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
   <script src="https://kit.fontawesome.com/5a92cbf765.js" crossorigin="anonymous"></script>

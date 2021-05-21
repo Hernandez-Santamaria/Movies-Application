@@ -1,5 +1,5 @@
 body{
-    background-color: coral;
+    background-color: lightsalmon;
 }
 
 .loader {
@@ -15,3 +15,15 @@ body{
     100% { transform: rotate(360deg); }
 }
 
+.editButton{
+    margin: 0 auto;
+    display: block;
+}
+
+.card {
+
+}
+
+.hide {
+    background-color: hotpink;
+}
